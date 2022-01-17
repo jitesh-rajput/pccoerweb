@@ -1,0 +1,12 @@
+/* Header */
+.header {
+  background-color: #211f21;
+}
+.nav-item {
+  padding: 1px 20px;
+  background-color: #fa0b77;
+  font-weight: bold;
+}
+.logo {
+  font-weight: bolder;
+}
