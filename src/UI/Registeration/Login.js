@@ -1,6 +1,7 @@
 import React from "react";
 import './Registeration.css';
-import Header from "../constant/Header/Header";
+import Header from "../constant/Header/Header2";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
     render() {
@@ -32,7 +33,7 @@ class Login extends React.Component {
 
       <div className="row text-center">
       <p className="text-decoration-none" to="" style={{color:" rgb(26, 236, 250)"}}>Forget Password ?</p>
-      <p className="text-decoration-none" to="/signup" style={{color:" rgb(26, 236, 250)"}}>Register </p>
+      <Link to="/signup" className="text-decoration-none" to="/signup" style={{color:" rgb(26, 236, 250)"}}>Register </Link>
       </div>
     </div>
  </div>

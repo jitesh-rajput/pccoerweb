@@ -1,6 +1,6 @@
 import React from "react";
 import './Registeration.css';
-import Header from "../constant/Header/Header";
+import Header from "../constant/Header/Header2";
 
 class Registeration extends React.Component {
     render() {

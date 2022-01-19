@@ -3,7 +3,7 @@ import './Landing.css';
 import profile from './img/profile.png'
 import graduate from './img/graduates.png'
 import scholarship from './img/scholarship.png'
-import Header from "../constant/Header/Header";
+import Header from "../constant/Header/Header2";
 class Landing extends React.Component {
     render() {
       return(
