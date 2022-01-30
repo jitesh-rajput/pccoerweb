@@ -31,7 +31,7 @@ class Landing extends React.Component {
             <img src={profile} className="img-fluid" style={{height: 200}}/>
           </div>
           <div className="col-sm-6">
-            <h3 class="font-weight-bold py-2">Get In Touch With PCCOER Alumni ... </h3>
+            <h3 className="font-weight-bold py-2">Get In Touch With PCCOER Alumni ... </h3>
             <h5 className="py-3">
                 Improve Your Profile With Alumni...... <br/>
                 Builde Your Professional Connection........  
@@ -45,7 +45,7 @@ class Landing extends React.Component {
         <div className="container">
           <div className="row py-5">
           <div className="col-sm-6">
-          <h3 class="font-weight-bold py-2">
+          <h3 className="font-weight-bold py-2">
           Get Roadmap of your B.E Journey .... </h3>
           <h5 className="py-3">
           Here you will get syllabus copy of your all
@@ -65,7 +65,7 @@ class Landing extends React.Component {
           <img src={graduate} className="img-fluid" style={{height: 200}}/>
         </div>
         <div className="col-sm-6">
-          <h3 class="font-weight-bold py-2">
+          <h3 className="font-weight-bold py-2">
           Get Internships ,Jobs and Competition.</h3>
           <h5 className="py-3">
           Here you can get internships , jobs and competition.

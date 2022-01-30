@@ -4,7 +4,15 @@ import Header from "../constant/Header/Header2";
 import { Link } from "react-router-dom";
 
 class Login extends React.Component {
+  constructor(props){
+    super(props)
+      this.state={
+        email:'',
+        password:''
+      }
+  }
     render() {
+      console.log(this.state)
       return(
           <div>
             <Header/>
@@ -16,18 +24,24 @@ class Login extends React.Component {
             <div className="col-10 col-sm-6 col-lg-4 m-auto">
             <form>
                 <div className="mb-3">
-                  <label for="exampleInputEmail1" className="form-label">Email</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                  <label for="Email" className="form-label">Email</label>
+                  <input type="email" className="form-control" id="Email" aria-describedby="emailHelp"
+                  value={this.state.email}
+                  onChange={event => this.setState({ email: event.target.value })}
+                  />
                   <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
-                  <label for="exampleInputPassword1" className="form-label">Password</label>
-                  <input type="password" className="form-control" id="exampleInputPassword1" />
+                  <label for="Password" className="form-label">Password</label>
+                  <input type="password" className="form-control" id="Password" 
+                  value={this.state.password}
+                  onChange={event => this.setState({ password: event.target.value })}
+                  />
                 </div>
                 <div className="text-center">
                 <button type="submit" className="btn btn-primary my-2 mx-5">Submit</button>
                 </div>
-              </form>
+            </form>
           </div>
       </div>
 

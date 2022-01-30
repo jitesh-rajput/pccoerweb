@@ -21,7 +21,6 @@ class AddTweet extends React.Component {
         <div className="container">
         <div className="row py-4"> 
         <div className="col-sm-12 col-lg-6 m-auto">
-        <form>
             <div classNamme="mb-3">
             <label for="exampleFormControlTextarea1" className="form-label"> Write Tweet</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -35,7 +34,6 @@ class AddTweet extends React.Component {
             <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3"/>
             </div>
             <button type="submit" className=" my-3 btn btn-primary">Share Tweet</button>
-            </form>
         </div>
         </div>
         </div>

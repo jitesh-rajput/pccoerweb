@@ -4,7 +4,7 @@ import profile from './../img/profile.png';
 const StudentCard =()=>{
     return(
         <div className="col-sm-6 col-lg-4 py-3">
-        <div className="card text-dark ">
+        <div className="card bg-dark ">
             <div className="card-header">
             <div className="d-flex">
                 <img src={userprofile} height={35} /> 

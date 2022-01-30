@@ -31,11 +31,10 @@ class Explore extends React.Component {
             
         <div className="container-fluid">
         <div className="row">
-        <ExploreCard/>
-        <ExploreCard/>
-        <ExploreCard/>
-        <ExploreCard/>
-        <ExploreCard/>
+        <ExploreCard param={"this is heaven"} second={"this is not"}/>
+        <ExploreCard param={"this is heaven"} second={"this is not"}/>
+        <ExploreCard param={"this is heaven"} second={"this is not"}/>
+        <ExploreCard param={"this is heaven"} second={"this is not"}/>
         </div>
         </div>
       </div>

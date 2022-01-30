@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "../constant/Header/Header";
+import TweetCard from "../Home/cards/TweetCard";
 import userprofile from "../Home/img/profile.png";
-import pccoerimg from '../Home/img/pccoer.jpg';
-
+// Here We use Home tweet card later we edit this to our tweet card..
 class Profile extends React.Component {
     render() {
       return (
@@ -16,33 +16,19 @@ class Profile extends React.Component {
             <img src={userprofile} height={180}/>
             </div>
             <div className="px-5 py-3">
-            <h6 className="px-5"> Username :- <span>some</span></h6>
-            <h6 className="px-5"> Name</h6>            
-            <h6 className="px-5"> Branch</h6>
-            <h6 className="px-5" > Friend</h6>            
-            <h6 className="px-5"> Bio</h6>
-            <h6 className="px-5"> email</h6>
+            <h6 className="px-5"> Username :- <span>Username</span></h6>
+            <h6 className="px-5"> Name :- <span>Name</span></h6>            
+            <h6 className="px-5"> Branch :- <span>Computer Engg</span></h6>
+            <h6 className="px-5" > Friend :- <span>12</span></h6>            
+            <h6 className="px-5"> Bio :- <span>Nothing to Share Here</span></h6>
+            <h6 className="px-5"> email :- <span>email@gmail.com</span></h6>
             <button className="m-3 px-5 btn py-2" >Edit</button>
             </div>
             </div>
 
-            <div className="col-sm-12 col-lg-7 m-auto">
-            <div className="py-3">
-            <div className="card bg-dark">
-              <div className="d-flex card-header">
-                <img src={userprofile} height={30} />
-                <h6 className="px-2 py-1">Username</h6>
-              </div>
-              <div className="card-body">
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a>Go somewhere</a>
-                <img src={pccoerimg} className="card-img-top" alt="..."/>
-              </div>
-              <div className="card-footer text-muted">
-                2 days ago
-              </div>
-            </div>
-            </div>
+            <div>
+            <TweetCard/>
+            <TweetCard/>
             </div>
 
 

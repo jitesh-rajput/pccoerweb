@@ -5,7 +5,7 @@ const FriendCard =()=>{
     return(
         <div className="row py-3"> 
         <div className="col-sm-12 col-lg-6 m-auto">
-        <div class="card text-dark">
+        <div class="card bg-dark">
         <div class="card-body">
             <div className="d-flex justify-content-between">
                 <div className='d-flex'>

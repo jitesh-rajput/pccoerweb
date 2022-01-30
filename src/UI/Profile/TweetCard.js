@@ -1,13 +1,9 @@
-import userprofile from './../img/icons/user.png';
-import pccoerimg from './../img/pccoer.jpg';
+import pccoerimg from '../Home/img/pccoer.jpg';
+import userprofile from "../Home/img/profile.png";
 
-const TweetCard =()=>{
-
+ const TweetCard =()=>{
     return(
-        <div className="py-3">
-        <div className="row">
-        <div className="col-sm-12 col-lg-6 m-auto">
-            <div className="card bg-dark">
+        <div className="card bg-dark">
               <div className="d-flex card-header">
                 <img src={userprofile} height={30} />
                 <h6 className="px-2 py-1">Username</h6>
@@ -20,9 +16,6 @@ const TweetCard =()=>{
               <div className="card-footer text-muted">
                 2 days ago
               </div>
-            </div>
-            </div>
-            </div>
             </div>
     )
 }
