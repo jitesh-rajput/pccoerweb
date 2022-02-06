@@ -2,17 +2,25 @@ import React from "react";
 import './Registeration.css';
 import Header from "../constant/Header/Header2";
 import { Link } from "react-router-dom";
+import CheckLogin from "../../firebase/CheckLogin";
+import Alert from "./Alert";
 
 class Login extends React.Component {
   constructor(props){
     super(props)
       this.state={
         email:'',
-        password:''
+        password:'',
+        error:''
+      }
+      this.loginUser=async(event)=>{
+        event.preventDefault();
+         this.setState({error: await CheckLogin(this.state)}) 
       }
   }
+
     render() {
-      console.log(this.state)
+      console.log(this.state.error)
       return(
           <div>
             <Header/>
@@ -21,10 +29,13 @@ class Login extends React.Component {
             <div className="text-center py-2">
                 <h2>Login</h2>
             </div>
+
+            { this.state.error? <Alert error={this.state.error}/> :''}
+
             <div className="col-10 col-sm-6 col-lg-4 m-auto">
-            <form>
+            <form onSubmit={this.loginUser}>
                 <div className="mb-3">
-                  <label for="Email" className="form-label">Email</label>
+                  <label className="form-label">Email</label>
                   <input type="email" className="form-control" id="Email" aria-describedby="emailHelp"
                   value={this.state.email}
                   onChange={event => this.setState({ email: event.target.value })}
@@ -32,7 +43,7 @@ class Login extends React.Component {
                   <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
-                  <label for="Password" className="form-label">Password</label>
+                  <label className="form-label">Password</label>
                   <input type="password" className="form-control" id="Password" 
                   value={this.state.password}
                   onChange={event => this.setState({ password: event.target.value })}

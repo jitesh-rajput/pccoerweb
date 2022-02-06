@@ -1,27 +1,32 @@
-import React from 'react';
-import firebase from "firebase"
-export default function CheckLogin(data) {
+import { signInWithEmailAndPassword } from "firebase/auth";
+import auth from "./Config";
 
-    console.log("Data :", data)
-    const { email, password, navigation, setLoading, setError } = data;
+const CheckLogin=async (data)=> {
+    let err;
+    const { email, password } = data;
     console.log(email, password)
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    await signInWithEmailAndPassword(auth ,email, password)
         .then((results) => {
             console.log(results)
-            navigation.navigate('Home')
         })
         .catch((error) => {
             if (error.message === "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                setError("No User Found");
-                setLoading(false)
+                console.log("No User Found");
+                err="No User Found";
+                //setLoading(false)
             }
             else if (error.message === "The email address is badly formatted.") {
-                setError("Please Enter a valid E-mail")
-                setLoading(false)
+                console.log("Please Enter a valid E-mail")
+                //setLoading(false)
+                err="Please enter valid mail"
             }
             else {
-                console.log(error)
-                setLoading(false)
+                console.log(error.message)
+                err=error.message;
+                //setLoading(false)
             }
         })
+        return err;
 }
+
+export default CheckLogin;

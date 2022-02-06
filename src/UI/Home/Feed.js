@@ -19,6 +19,7 @@ class Feed extends React.Component {
           </div>
             <TweetCard/>
             <TweetCard/>
+            <TweetCard/>
       </div>
       <BottomFooter/>
       </div>
