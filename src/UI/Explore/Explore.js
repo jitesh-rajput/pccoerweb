@@ -31,10 +31,10 @@ class Explore extends React.Component {
             
         <div className="container-fluid">
         <div className="row">
-        <ExploreCard param={"this is heaven"} second={"this is not"}/>
-        <ExploreCard param={"this is heaven"} second={"this is not"}/>
-        <ExploreCard param={"this is heaven"} second={"this is not"}/>
-        <ExploreCard param={"this is heaven"} second={"this is not"}/>
+        <ExploreCard param={"Internship in Infosys"} second={"Canditate must enroll B.E/B.Tech Course"}/>
+        <ExploreCard param={"Internship in Jio"} second={"Candidate must have 8 CGPA to apply "}/>
+        <ExploreCard param={"Internship in Infosys"} second={"Canditate must enroll B.E/B.Tech Course"}/>
+        <ExploreCard param={"Internship in Wipro"} second={"Candidate must have 8 CGPA to apply "}/>
         </div>
         </div>
       </div>

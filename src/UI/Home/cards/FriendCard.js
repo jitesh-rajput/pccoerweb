@@ -5,8 +5,8 @@ const FriendCard =()=>{
     return(
         <div className="row py-3"> 
         <div className="col-sm-12 col-lg-6 m-auto">
-        <div class="card bg-dark">
-        <div class="card-body">
+        <div className="card bg-dark">
+        <div className="card-body">
             <div className="d-flex justify-content-between">
                 <div className='d-flex'>
                 <img src={userprofile} height={35} /> 
@@ -14,7 +14,7 @@ const FriendCard =()=>{
                 </div>
                 <button className="btn py-2" >Connect</button>
             </div>
-            <p>This is some text within a card body.</p>
+            <p>Computer Engg || PCCOER Pune</p>
         </div>
         </div>
         </div>

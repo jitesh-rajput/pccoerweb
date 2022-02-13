@@ -1,9 +1,9 @@
 import React from "react";
 import './Registeration.css';
 import Header from "../constant/Header/Header2";
-import { Link } from "react-router-dom";
 import CheckLogin from "../../firebase/CheckLogin";
-import Alert from "./Alert";
+import Alert from "../constant/Alert";
+import { Link, Navigate } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props){
@@ -11,16 +11,18 @@ class Login extends React.Component {
       this.state={
         email:'',
         password:'',
-        error:''
+        error:null,
       }
       this.loginUser=async(event)=>{
         event.preventDefault();
          this.setState({error: await CheckLogin(this.state)}) 
       }
   }
-
     render() {
-      console.log(this.state.error)
+      if(this.state.error=="Login"){
+        console.log("Verified ..!");
+        return (<Navigate to="/home" replace={true} />)
+      }
       return(
           <div>
             <Header/>
@@ -40,7 +42,7 @@ class Login extends React.Component {
                   value={this.state.email}
                   onChange={event => this.setState({ email: event.target.value })}
                   />
-                  <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                  <div id="emailHelp" className="form-text">We'll Never Share Your Email</div>
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Password</label>

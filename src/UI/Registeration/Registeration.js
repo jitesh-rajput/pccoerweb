@@ -2,11 +2,11 @@ import React from "react";
 import './Registeration.css';
 import Header from "../constant/Header/Header2";
 import CreateUser from "../../firebase/CreateUser";
-import Alert from "./Alert";
+import Alert from "../constant/Alert";
 
 class Registeration extends React.Component {
-    constructor(){
-      super()
+    constructor(props){
+      super(props)
       this.state={
         username:'',
         name:'',
@@ -21,12 +21,16 @@ class Registeration extends React.Component {
       }
       this.createAccount=async(event)=>{
         event.preventDefault();
+        if(this.state.password1!==this.state.password2){
+          this.setState({error:"Password Must Be Same ..!"})
+        }
+        else{
          this.setState({error: await CreateUser(this.state)}) 
+        }
       }
 
     }
     render() {
-      console.log(this.state.error)
       return(
           <div>
             <Header/>
@@ -47,6 +51,7 @@ class Registeration extends React.Component {
                     <input type="text" className="form-control" id="Username"
                     value={this.state.username}
                     onChange={(event) => this.setState({ username: event.target.value })}
+                    required
                      />
                   </div>
                   <div className="mb-3">
@@ -54,6 +59,7 @@ class Registeration extends React.Component {
                     <input type="text" className="form-control" id="Name"
                     value={this.state.name}
                     onChange={(event) => this.setState({ name: event.target.value })}
+                    required
                      />
                   </div>
                   <div className="mb-3">
@@ -61,6 +67,7 @@ class Registeration extends React.Component {
                     <input type="email" className="form-control" id="Email" aria-describedby="emailHelp"
                   value={this.state.email}
                   onChange={(event) => this.setState({ email: event.target.value })}
+                  required
                     />
                   </div>
                   <div className="mb-3">
@@ -68,6 +75,7 @@ class Registeration extends React.Component {
                     <input type="password" className="form-control" id="Password1"
                     value={this.state.password1}
                     onChange={(event) => this.setState({ password1: event.target.value })}
+                    required
                    />
                   </div>
                   <div className="mb-3">
@@ -75,6 +83,7 @@ class Registeration extends React.Component {
                     <input type="password" className="form-control" id="Password2"
                     value={this.state.password2}
                     onChange={(event) => this.setState({ password2: event.target.value })}
+                    required
                     />
                   </div>
                   <div className="text-center">

@@ -9,15 +9,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Explore from "./UI/Explore/Explore";
 import Profile from "./UI/Profile/Profile";
 
+import firebase from "firebase";
+import { firebaseConfig } from "./firebase/Config";
+import {Provider} from 'react-redux';
+import store from './redux/store';
+
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig)
+  console.log("Connected .......!")
+}
+
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
     <BrowserRouter>
     <Routes>
         <Route path="/" element={<Landing/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Registeration/>}/>
-        <Route path="/home/*" element={<Feed/>} />
+        <Route path="/home" element={<Feed/>} />
         <Route path="/home/addfrd" element={<AddFriend/>} />
         <Route path="/home/addtweet" element={<AddTweet/>} />
         <Route path="/home/student" element={<StudentPanel/>} />
@@ -27,6 +38,7 @@ function App() {
     </BrowserRouter>
 
     </div>
+    </Provider>
   );
 }
 

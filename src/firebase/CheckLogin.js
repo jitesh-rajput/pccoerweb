@@ -1,23 +1,22 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import auth from "./Config";
+import firebase from "firebase"
 
-const CheckLogin=async (data)=> {
+const CheckLogin=async(data)=> {
     let err;
     const { email, password } = data;
-    console.log(email, password)
-    await signInWithEmailAndPassword(auth ,email, password)
+    await firebase.auth().signInWithEmailAndPassword(email, password)
         .then((results) => {
-            console.log(results)
+           const token =firebase.auth().currentUser.refreshToken
+           const user=firebase.auth().currentUser.uid
+           sessionStorage.setItem("user",user)
+           sessionStorage.setItem("token",token)
+            err="Login"
         })
         .catch((error) => {
             if (error.message === "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                console.log("No User Found");
                 err="No User Found";
                 //setLoading(false)
             }
             else if (error.message === "The email address is badly formatted.") {
-                console.log("Please Enter a valid E-mail")
-                //setLoading(false)
                 err="Please enter valid mail"
             }
             else {

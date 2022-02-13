@@ -1,11 +1,37 @@
 import React from "react";
 import Header from "../constant/Header/Header";
 import BottomFooter from "./BottomFooter";
-
+import ShareTweet from "../../firebase/ShareTweet";
 import './Feed.css'
 
+import { connect } from 'react-redux';
+
 class AddTweet extends React.Component {
+    componentDidMount(){
+      console.log(this.props)
+      if(!this.props.user){
+        return "404"
+      }
+    }
+    constructor(props){
+      super(props)
+      console.log(props.user)
+      this.state={
+        caption:'',
+        img:'',
+        url:'',
+        error:'',
+        username:props.user.username,
+        profile:props.user.profile_pic,
+        error:''
+      }
+    }
+    
     render() {
+      const Share=(e)=>{
+        e.preventDefault();
+        console.log( ShareTweet(this.state))
+      }
       return (
       <div>
       <Header/>
@@ -21,19 +47,29 @@ class AddTweet extends React.Component {
         <div className="container">
         <div className="row py-4"> 
         <div className="col-sm-12 col-lg-6 m-auto">
-            <div classNamme="mb-3">
-            <label for="exampleFormControlTextarea1" className="form-label"> Write Tweet</label>
-            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <form onSubmit={Share}>
+            <div className="mb-3">
+            <label className="form-label"> Write Tweet</label>
+            <textarea className="form-control" rows="3"
+            value={this.state.caption}
+            onChange={event => this.setState({ caption: event.target.value })}
+            ></textarea>
             </div>
             <div className="mb-3">
-            <label for="formFile" className="form-label">Share Image </label>
-            <input className="form-control" type="file" accept=".jpg,.gif,.png" id="formFile" />
+            <label className="form-label">Share Image </label>
+            <input className="form-control" type="file" accept=".jpg,.gif,.png" 
+              onChange={event=>this.setState({img:event.target.files[0]})}
+            />
             </div>
             <div className=" mb-3">
-            <label for="basic-url" className="form-label">Add URL</label>
-            <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3"/>
+            <label className="form-label">Add URL</label>
+            <input type="text" className="form-control" aria-describedby="basic-addon3"
+              value={this.state.url}
+              onChange={event=>this.setState({url:event.target.value})}
+            />
             </div>
             <button type="submit" className=" my-3 btn btn-primary">Share Tweet</button>
+            </form>
         </div>
         </div>
         </div>
@@ -45,4 +81,8 @@ class AddTweet extends React.Component {
     }
   }
 
-  export default AddTweet;
+  function mapStateToProps(state) {
+    return {user:state.userState.currentUser}
+  }
+  
+  export default connect(mapStateToProps)(AddTweet)

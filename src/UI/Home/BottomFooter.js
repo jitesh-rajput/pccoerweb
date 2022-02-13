@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 const BottomFooter = ()=>{
     return(
         <div>
-            <div className="container fixed-bottom py-3">
+          <div className="container fixed-bottom py-3">
           <div className="row">
             <div className="col-sm-12 col-lg-6 m-auto bg-dark rounded shadow-lg py-1">
             <div className="row text-center">
             <div className="col-3">
-            <Link to="/home/feed">
+            <Link to="/home">
             <img className="bg-white rounded px-2 py-2" src={feedicon} height={40}/>
             </Link>
             </div>

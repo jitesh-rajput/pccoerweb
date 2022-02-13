@@ -11,7 +11,7 @@ class Profile extends React.Component {
       <div className="container-fluid home-bg cardcss">
         <div className="container-fluid pt-5 ">
           <div className="row pt-5 pb-2">
-            <div className="col-sm-12 col-lg-4 mt-3 py-2">
+            <div className="col-sm-12 col-lg-4 mt-3 py-2 m-auto">
             <div className="text-center">
             <img src={userprofile} height={180}/>
             </div>

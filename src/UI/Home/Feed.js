@@ -1,11 +1,38 @@
 import React from "react";
 import Header from "../constant/Header/Header";
 import BottomFooter from "./BottomFooter";
-
+import { Link, Navigate } from 'react-router-dom';
 import './Feed.css'
 import TweetCard from "./cards/TweetCard";
+import firebase from "firebase";
+import { setUser} from "../../redux/actions";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+
 class Feed extends React.Component {
+    componentDidMount(){
+      this.props.setUser()
+    // Fetch user Posts 
+     firebase.firestore()
+            .collection("tweets")
+            .onSnapshot((snapshot) => {
+                let allpost = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    const id = doc.id;
+                    return { id, ...data }
+                })
+                console.log(allpost)
+                this.setState({ post: allpost })
+            })
+    } 
+    constructor(){
+      super()
+      this.state={
+        post:[]
+      }
+    }
     render() {
+      console.log(this.state.post)
       return (
       <div>
       <Header/>
@@ -17,14 +44,24 @@ class Feed extends React.Component {
             </div>
           </div>
           </div>
-            <TweetCard/>
-            <TweetCard/>
-            <TweetCard/>
+           {this.state.post.map(data=>(
+            <TweetCard data={data} key={data.id}/>
+           ))} 
+          
       </div>
       <BottomFooter/>
       </div>
       )
+    // }
+
+    // else{
+    //   return (<Navigate to="/login" replace={true} />)
+    // }
+
     }
   }
 
-  export default Feed;
+
+ const mapDispatchProps = (dispatch) => bindActionCreators({ setUser }, dispatch);
+ export default connect(mapDispatchProps, mapDispatchProps)(Feed)
+//export default Feed;
