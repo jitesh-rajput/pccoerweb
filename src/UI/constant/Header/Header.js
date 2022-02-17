@@ -1,9 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.css'
 import { Outlet, Link } from "react-router-dom";
 
 const Header =()=>{
-  const [active,setactive]=useState('Home');
+  
+    let active=""
+    if((window.location.href).includes('explore')){
+      active="explore"
+    }
+    if((window.location.href).includes('home')){
+      active="home"
+    }
+    if((window.location.href).includes('profile')){
+      active="profile"
+    }
     return(
       <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-3 ">
@@ -25,12 +35,15 @@ const Header =()=>{
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 pt-3">
         <li className="nav-item ">
-          <Link to="/home" className="active px-3 mx-4 nav-link text-center nav-link " aria-current="page" >
+          <Link to="/home"
+          className={(active==="home") ? 'active px-3 mx-4 nav-link text-center nav-link':'px-3 mx-4 nav-link text-center nav-link'}
+          >
             HOME
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/explore" className="nav-link fw-bold px-3 mx-4 text-white" href="#">
+          <Link to="/explore"
+          className={(active==="explore") ? 'active px-3 mx-4 nav-link text-center nav-link':'px-3 mx-4 nav-link text-center nav-link'}>
             EXPLORE
           </Link>
         </li>
@@ -40,7 +53,8 @@ const Header =()=>{
           </a>
         </li>
         <li className="nav-item">
-          <Link to="/profile" className="nav-link fw-bold px-3 mx-4 text-white" href="#">
+          <Link to="/profile" 
+          className={(active==="profile") ? 'active px-3 mx-4 nav-link text-center nav-link':'px-3 mx-4 nav-link text-center nav-link'}>
             PROFILE
           </Link>
         </li>

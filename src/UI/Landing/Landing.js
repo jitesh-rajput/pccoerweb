@@ -7,7 +7,7 @@ import Header from "../constant/Header/Header2";
 class Landing extends React.Component {
     render() {
       return(
-<div>
+      <div>
         <Header/>
       <div className="container-fluide">
       <div className="bg">

@@ -32,7 +32,7 @@ function App() {
         <Route path="/home/addfrd" element={<AddFriend/>} />
         <Route path="/home/addtweet" element={<AddTweet/>} />
         <Route path="/home/student" element={<StudentPanel/>} />
-        <Route path="/explore" element={<Explore/>} />
+        <Route path="/explore"  element={<Explore/>} />
         <Route path="/profile" element={<Profile/>} />
     </Routes>
     </BrowserRouter>

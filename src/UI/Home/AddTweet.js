@@ -21,7 +21,7 @@ class AddTweet extends React.Component {
         img:'',
         url:'',
         error:'',
-        username:props.user.username,
+        username:props.user.username ,
         profile:props.user.profile_pic,
         error:''
       }
