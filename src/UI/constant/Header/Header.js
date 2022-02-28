@@ -14,6 +14,9 @@ const Header =()=>{
     if((window.location.href).includes('profile')){
       active="profile"
     }
+    if((window.location.href).includes('syllabus')){
+      active="syllabus"
+    }
     return(
       <div>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark py-3 ">
@@ -48,9 +51,10 @@ const Header =()=>{
           </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link fw-bold px-3 mx-4 text-white" href="#">
+        <Link to="/syllabus"
+        className={(active==="syllabus") ? 'active px-3 mx-4 nav-link text-center nav-link':'px-3 mx-4 nav-link text-center nav-link'}>
             SYLLABUS
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <Link to="/profile" 

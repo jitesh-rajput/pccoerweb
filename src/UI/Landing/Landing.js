@@ -88,7 +88,10 @@ class Landing extends React.Component {
           </div>
           <div className="col-sm-6">
             <h2>DEVELOPED BY</h2>
-            *
+            <h5>Jitesh </h5>
+            <h5>Swastik </h5>
+            <h5>Shraddha </h5>
+            <h5>Nikita </h5>
           </div>
           </div>
         </div>

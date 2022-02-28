@@ -3,6 +3,7 @@
 .home-bg {
   color: white;
   background-color: #414140;
+  min-height: 100vh;
 }
 .addtweetbg {
   height: 100vh;

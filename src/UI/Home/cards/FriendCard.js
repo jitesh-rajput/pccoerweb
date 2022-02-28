@@ -1,5 +1,5 @@
-import userprofile from './../img/icons/user.png';
-
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const FriendCard =(data)=>{
     console.log(data)
@@ -12,9 +12,10 @@ const FriendCard =(data)=>{
             <div className="d-flex justify-content-between">
                 <div className='d-flex'>
                 <img src={data.profile_pic} height={35} /> 
-                <h6 className="px-2 py-1">{data.username}</h6>
+                <Link to={`/profile/${data.uid}`} className="link text-white text-decoration-none">
+                <h5 className="px-2 py-1">{data.username}</h5>
+                </Link>
                 </div>
-                <button className="btn py-2" >Connect</button>
             </div>
             <p>Computer Engg || PCCOER Pune</p>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../constant/Header/Header";
 import BottomFooter from "./BottomFooter";
 import ShareTweet from "../../firebase/ShareTweet";
+import firebase from "firebase";
 import './Feed.css'
 
 import { connect } from 'react-redux';
@@ -9,10 +10,11 @@ import { connect } from 'react-redux';
 class AddTweet extends React.Component {
     componentDidMount(){
       console.log(this.props)
-      if(!this.props.user){
+      if(!sessionStorage.getItem("user")){
         return "404"
       }
     }
+
     constructor(props){
       super(props)
       console.log(props.user)
@@ -23,14 +25,16 @@ class AddTweet extends React.Component {
         error:'',
         username:props.user.username ,
         profile:props.user.profile_pic,
-        error:''
+        error:'',
+        upload:false
       }
     }
     
     render() {
-      const Share=(e)=>{
+      const Share=async(e)=>{
         e.preventDefault();
-        console.log( ShareTweet(this.state))
+        this.setState({error: ShareTweet(this.state)})
+        console.log(this.state.error)
       }
       return (
       <div>
@@ -46,6 +50,16 @@ class AddTweet extends React.Component {
         
         <div className="container">
         <div className="row py-4"> 
+        {this.state.error==="Post Uploaded" ?
+        <div class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            Hello, world! This is a toast message.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+      :'' }
         <div className="col-sm-12 col-lg-6 m-auto">
             <form onSubmit={Share}>
             <div className="mb-3">

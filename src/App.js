@@ -8,11 +8,18 @@ import Registeration from "./UI/Registeration/Registeration";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Explore from "./UI/Explore/Explore";
 import Profile from "./UI/Profile/Profile";
+import UserProfile from "./UI/constant/UserProfile";
+import Menu from "./UI/Syllabus/Menu";
+import Detail from './UI/Syllabus/Detail';
 
 import firebase from "firebase";
 import { firebaseConfig } from "./firebase/Config";
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import Deatail from "./UI/Explore/Detail";
+import MenuCards from "./UI/Syllabus/MenuCards";
+import ShowFollowing from "./UI/constant/ShowFollowing";
+import TweetDetail from "./UI/constant/TweetDetail";
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
@@ -29,11 +36,18 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Registeration/>}/>
         <Route path="/home" element={<Feed/>} />
+        <Route path="/home/:id" element={<TweetDetail/>} />
         <Route path="/home/addfrd" element={<AddFriend/>} />
         <Route path="/home/addtweet" element={<AddTweet/>} />
         <Route path="/home/student" element={<StudentPanel/>} />
         <Route path="/explore"  element={<Explore/>} />
+        <Route path="/explore/detail/:id/:type"  element={<Deatail/>} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile/:id" element={<UserProfile/>} />
+        <Route path="/profile/:id/userFollowing" element={<ShowFollowing/>} />
+        <Route path="/syllabus" element={<Menu/>}/>
+        <Route path="/syllabus/:branch" element={<MenuCards/>}/>
+        <Route path="/syllabus/:branch/:sem" element={<Detail/>} />
     </Routes>
     </BrowserRouter>
 
@@ -43,3 +57,4 @@ function App() {
 }
 
 export default App;
+//        <Route path="/profile" element={<Profile/>} />

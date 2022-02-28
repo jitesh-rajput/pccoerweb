@@ -3,33 +3,25 @@ import Header from "../constant/Header/Header";
 import TweetCard from "../Home/cards/TweetCard";
 import userprofile from "../Home/img/profile.png";
 import firebase from "firebase";
-import UpdateProfile from "./UpdateProfile";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+ const UserProfile =(props) => {
+    const params = useParams();
+    return (
+      <Pro {...props} params={params} />
+    );
+  }
 
-class Profile extends React.Component {
+class Pro extends React.Component {
   componentDidMount(){
-    // Get Current User
+    const id=this.props.params.id
     firebase.firestore().collection("users")
-    .doc(sessionStorage.getItem("user"))
+    .doc(id)
     .onSnapshot((snapshot)=>{
       this.setState({user:snapshot.data()})
     })
 
-    // Get User Following
-    firebase.firestore().collection("Following")
-    .doc(sessionStorage.getItem("user"))
-    .collection("userFollowing")
-    .get()
-    .then((snapshot)=>{
-      let users=snapshot.docs.map(doc=>{
-        const id=doc.id; 
-        return id
-    })
-    this.setState({following:users.length})
-  })
-
     firebase.firestore().collection("tweets")
-    .where('uid',"==",sessionStorage.getItem("user"))
+    .where('uid',"==",id)
     .get().then(snapshot=>{
       let userpost = snapshot.docs.map(doc => {
         const data = doc.data();
@@ -38,30 +30,54 @@ class Profile extends React.Component {
     })
      this.setState({posts:userpost})
     })
+     // Get User Following
+     firebase.firestore().collection("Following")
+     .doc(id)
+     .collection("userFollowing")
+     .get()
+     .then((snapshot)=>{
+       let users=snapshot.docs.map(doc=>{
+         const id=doc.id; 
+         return id
+     })
+     this.setState({following:users.length})
+   })   
+  // Get User Following
+  firebase.firestore().collection("Following")
+  .doc(sessionStorage.getItem("user"))
+  .collection("userFollowing")
+  .get()
+  .then((snapshot)=>{
+    let users=snapshot.docs.map(doc=>{
+      const id=doc.id; 
+      return id
+  })
+  this.setState({isFollowing:users.includes(id)})
+})
   }
-  
   constructor(){
     super()
     this.state={
       user:'',
       posts:[],
-      following:0,
-      logout:false
+      isFollowing:false,
+      following:0
     }
-    console.log(this.state.user)
   }
     render() {
-      const LogOut=(e)=>{
-        e.preventDefault();
-        sessionStorage.clear();
-        firebase.auth().signOut();
-        console.log("User Signed Out !")
-        this.setState({logout:true})
+
+      const userFollowing=(uid)=>{
+        firebase.firestore()
+                  .collection("Following")
+                  .doc(firebase.auth().currentUser.uid)
+                  .collection("userFollowing")
+                  .doc(uid)
+                  .set({
+                  }).then(()=>{
+                  this.setState({isFollowing:true})
+                  }
+                  )
       }
-      if(this.state.logout){
-        return(<Navigate to="/login" replace={true} />)
-      }
-      else{
       return (
       <div>
       <Header/>
@@ -77,18 +93,16 @@ class Profile extends React.Component {
                 <h6 className="px-3"> Username :- <span>{this.state.user.username}</span></h6>
                 <h6 className="px-5"> Name :- <span>{this.state.user.name}</span></h6>            
                 <h6 className="px-5"> Branch :- <span>{this.state.user.branch}</span></h6>
-                <Link className="link text-white text-decoration-none" to={`/profile/${this.state.user.uid}/userFollowing`}>
-                <h6 className="px-5" > Friend :- <span>{this.state.following}</span></h6>            
-                </Link>
+                <Link className="text-white text-decoration-none link" to={`/profile/${this.state.user.uid}/userFollowing`}>
+                <h6 className="px-5" > Friend :-{this.state.following} <span></span></h6> 
+                </Link>           
                 <h6 className="px-5"> Bio :- <span>{this.state.user.bio}</span></h6>
                 <h6 className="px-5"> email :- <span>{this.state.user.email}</span></h6>
                 <h6 className="px-5"> website :- <span>{this.state.user.website}</span></h6>
                 <div className="row">
-                <div className="col-lg-5">
-                  <UpdateProfile/>
+                <div className="col-lg-5 text-center" >
+                <button className="btn py-2" onClick={()=>userFollowing(this.state.user.uid)} >{this.state.isFollowing ?'Following':"Connect"}</button>
                 </div>
-                <div className="col-lg-5" >
-                <a className="col m-3 px-5 py-2 btn btn-primary" onClick={LogOut}>LogOut</a>
                 </div>
 
                 </div>
@@ -100,10 +114,8 @@ class Profile extends React.Component {
            ))}
         </div>
       </div>
-    </div>
       )
-          }
     }
   }
-  export default Profile
 
+export default UserProfile

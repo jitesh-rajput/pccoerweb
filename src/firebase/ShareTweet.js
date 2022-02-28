@@ -1,9 +1,10 @@
 import firebase from 'firebase';
+import { useState } from 'react';
 require('firebase/firestore')
 require('firebase/firebase-storage')
 
  const ShareTweet =(params) => {
-     let err;
+    //const [err,setError]=useState('') // Not Working 
     console.log(params)
     const {caption,img,url,error,user,profile,username}=params;
     if(img){
@@ -12,7 +13,7 @@ require('firebase/firebase-storage')
 
     const task = firebase.storage().ref(imgUrl)
     const uploadTask = task.put(img,fileMetaData);
-    err =uploadTask.on("state_changed",console.log(),console.error(),()=>{
+    uploadTask.on("state_changed",console.log(),console.error(),()=>{
         task.getDownloadURL()
         .then((link)=>{
             console.log(link)
@@ -31,13 +32,34 @@ require('firebase/firebase-storage')
                 )
                 .then(function () {
                     console.log("Post uploaded");
-                    return "Post Uploaded"
+                   // setError("Post Uploaded")
                 }
                 )
         })
     })
 
 }
-return err
+else if(caption){
+    firebase.firestore()
+                .collection('tweets')
+                .add(
+                    {
+                        uid:firebase.auth().currentUser.uid,
+                        caption,
+                        creation: firebase.firestore.FieldValue.serverTimestamp(),
+                        profile,
+                        username,
+                        url
+                    }
+                )
+                .then(function () {
+                    console.log("Tweet Uploaded");
+                   // setError("Tweet Uploaded")
+                    //console.log(err)
+                }
+                )
+    }
+//console.log(err)
+//return err
  }
 export default ShareTweet;

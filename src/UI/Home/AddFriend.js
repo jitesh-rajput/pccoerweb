@@ -7,8 +7,33 @@ import firebase from "firebase";
 
 class AddFriend extends React.Component {
     componentDidMount(){
-
-      firebase.firestore().collection("users")
+      
+      firebase.firestore().collection("Following")
+      .doc(sessionStorage.getItem("user"))
+      .collection("userFollowing")
+      .get()
+      .then((snapshot)=>{
+        console.log("jksdf")
+        let users=snapshot.docs.map(doc=>{
+          const id=doc.id; 
+          return id
+      })
+      console.log("UserFollowing",users)
+      if(users){
+        firebase.firestore().collection("users")
+        .where("uid","not-in",users)
+        .get().then((snapshot)=>{
+          console.log(snapshot)
+          let users=snapshot.docs.map(doc=>{
+              const data=doc.data();
+              const id=doc.id;
+              return {id,...data}
+          })        
+          this.setState({allusers:users})
+        })
+      }
+      else{
+        firebase.firestore().collection("users")
       .where("uid","!=",sessionStorage.getItem("user"))
       .get().then((snapshot)=>{
         console.log(snapshot)
@@ -20,13 +45,17 @@ class AddFriend extends React.Component {
         console.log(users)
         this.setState({allusers:users})
       })
+      }
+    })
     }
+
     constructor(){
       super()
       this.state={
         allusers:[],
         search:""
       }
+      
       this.searchUser=(e)=>{
         e.preventDefault()
         console.log(this.state.search)
@@ -42,11 +71,10 @@ class AddFriend extends React.Component {
                     })
                     this.setState({ allusers: user })
                 })
-
       }
     }
     render() {
-      console.log(this.state.allusers)
+      console.log(this.state.userFollowing)
       return (
         <div>
           <Header/>
