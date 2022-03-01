@@ -24,7 +24,7 @@ require('firebase/firebase-storage')
                         uid:firebase.auth().currentUser.uid,
                         post:link,
                         caption,
-                        creation: firebase.firestore.FieldValue.serverTimestamp(),
+                        creation:firebase.firestore.FieldValue.serverTimestamp(),
                         profile,
                         username,
                         url

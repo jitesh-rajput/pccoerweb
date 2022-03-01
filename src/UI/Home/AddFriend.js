@@ -33,7 +33,7 @@ class AddFriend extends React.Component {
         })
       }
       else{
-        firebase.firestore().collection("users")
+      firebase.firestore().collection("users")
       .where("uid","!=",sessionStorage.getItem("user"))
       .get().then((snapshot)=>{
         console.log(snapshot)
