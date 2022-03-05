@@ -70,7 +70,7 @@ class Profile extends React.Component {
           <div className="row pt-5 pb-2">
             <div className="col-sm-12 col-lg-4 mt-3 py-2 m-auto bg-dark text-white">
               <div className="text-center">
-                <img src={this.state.user.profile_pic} height={180}/>
+                <img className="rounded-circle" src={this.state.user.profile_pic} height={150} width={150}/>
               </div>
               
               <div className="px-5 py-3">
@@ -82,16 +82,17 @@ class Profile extends React.Component {
                 </Link>
                 <h6 className="px-5"> Bio :- <span>{this.state.user.bio}</span></h6>
                 <h6 className="px-5"> email :- <span>{this.state.user.email}</span></h6>
-                <h6 className="px-5"> website :- <span>{this.state.user.website}</span></h6>
+                <h6 className="px-5"> website :- <span><a href={`${this.state.user.website}`} target="_blank">{this.state.user.website}</a></span></h6>
+                
                 <div className="row">
-                <div className="col-lg-5">
+                <div className="col-lg-6">
                   <UpdateProfile/>
                 </div>
-                <div className="col-lg-5" >
+                <div className="col-lg-6" >
                 <a className="col m-3 px-5 py-2 btn btn-primary" onClick={LogOut}>LogOut</a>
                 </div>
-
                 </div>
+
               </div>
             </div>
           </div>

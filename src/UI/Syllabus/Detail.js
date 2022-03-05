@@ -23,7 +23,6 @@ const Detail =(props) => {
 
 class ShowDetail extends React.Component{
     componentDidMount(){
-        console.log(this.props.params.branch)
         firebase.firestore().collection("syllabus")
         .where("branch","==",`${this.props.params.branch}`)
         .where("sem","==",`${this.props.params.sem}`)
@@ -53,7 +52,7 @@ class ShowDetail extends React.Component{
             <Header/>
             <div className="container-fluid home-bg cardcss py-5">
             <div className="container py-5">
-            <h1 className="py-4 text-center text-uppercase"> Sem Syllabus</h1>
+            <h1 className="py-4 text-center text-uppercase">{this.props.params.sem} Sem Syllabus</h1>
             {this.state.subjects.map(data=>(
             <DetailCard data={data} key={data.id}/>
            ))} 

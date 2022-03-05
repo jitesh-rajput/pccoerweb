@@ -10,13 +10,13 @@ const FriendCard =(data)=>{
         <div className="card-body">
             <div className="d-flex justify-content-between">
                 <div className='d-flex'>
-                <img src={data.profile_pic} height={35} /> 
+                <img className='rounded-circle' src={data.profile_pic} height={40} width={40}/> 
                 <Link to={`/profile/${data.uid}`} className="link text-white text-decoration-none">
                 <h5 className="px-2 py-1">{data.username}</h5>
                 </Link>
                 </div>
             </div>
-            <p>Computer Engg || PCCOER Pune</p>
+            <p>{data.branch }|| PCCOER Pune</p>
         </div>
         </div>
         </div>

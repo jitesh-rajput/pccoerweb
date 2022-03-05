@@ -71,7 +71,6 @@ class Explore extends React.Component {
             <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                 <li><a className="dropdown-item" onClick={()=>this.getCompition()}>Compition's </a></li>
                 <li><a className="dropdown-item" onClick={()=>this.getInternships()}>Internships </a></li>
-                <li><a className="dropdown-item" onClick={()=>this.getFreelancing()}>Freelancing</a></li>
             </ul>
             </div>
             </div>

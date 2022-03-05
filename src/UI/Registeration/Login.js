@@ -19,8 +19,7 @@ class Login extends React.Component {
       }
   }
     render() {
-      if(this.state.error=="Login"){
-        console.log("Verified ..!");
+      if(this.state.error==="Login"){
         return (<Navigate to="/home" replace={true} />)
       }
       return(
@@ -38,11 +37,10 @@ class Login extends React.Component {
             <form onSubmit={this.loginUser}>
                 <div className="mb-3">
                   <label className="form-label">Email</label>
-                  <input type="email" className="form-control" id="Email" aria-describedby="emailHelp"
+                  <input type="email" className="form-control" id="Email" aria-describedby="email"
                   value={this.state.email}
                   onChange={event => this.setState({ email: event.target.value })}
                   />
-                  <div id="emailHelp" className="form-text">We'll Never Share Your Email</div>
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Password</label>
@@ -59,8 +57,8 @@ class Login extends React.Component {
       </div>
 
       <div className="row text-center">
-      <p className="text-decoration-none" to="" style={{color:" rgb(26, 236, 250)"}}>Forget Password ?</p>
-      <Link to="/signup" className="text-decoration-none" to="/signup" style={{color:" rgb(26, 236, 250)"}}>Register </Link>
+      <Link className="text-decoration-none" to="/forgetpassword" style={{color:" rgb(26, 236, 250)"}}>Forget Password ?</Link>
+      <Link to="/signup" className="text-decoration-none" style={{color:" rgb(26, 236, 250)"}}>Register </Link>
       </div>
     </div>
  </div>

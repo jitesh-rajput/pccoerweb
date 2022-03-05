@@ -12,7 +12,7 @@ const ExploreCard =(props)=>{
         <div className="card-body">
                 <div className='d-flex'>
                 <img src={data.pic} height={50} /> 
-                <h6 className="px-2 py-1 fw-bold">{data.title}</h6>
+                <h6 className="px-2 py-1 fw-bold">{data.title} {data.ctitle}</h6>
                 </div>
                 <div className="d-flex justify-content-between pt-2">
                 <p> </p>

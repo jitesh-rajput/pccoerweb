@@ -36,7 +36,7 @@ class Menu extends React.Component {
   </div>
   <div className="col">
     <div className="card bg-dark">
-    <Link to="/syllabus/CE">
+    <Link to="/syllabus/EE">
       <img src="https://firebasestorage.googleapis.com/v0/b/pccoer-web-d4e66.appspot.com/o/icons%2Fee.jpg?alt=media&token=d968b298-1369-4aa1-83f6-fa26a8669d88" className="card-img-top" alt="..."
     />
     </Link>

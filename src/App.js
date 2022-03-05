@@ -11,6 +11,7 @@ import Profile from "./UI/Profile/Profile";
 import UserProfile from "./UI/constant/UserProfile";
 import Menu from "./UI/Syllabus/Menu";
 import Detail from './UI/Syllabus/Detail';
+import Error from "./UI/constant/Error";
 
 import firebase from "firebase";
 import { firebaseConfig } from "./firebase/Config";
@@ -20,6 +21,7 @@ import Deatail from "./UI/Explore/Detail";
 import MenuCards from "./UI/Syllabus/MenuCards";
 import ShowFollowing from "./UI/constant/ShowFollowing";
 import TweetDetail from "./UI/constant/TweetDetail";
+import ForgetPass from "./UI/Registeration/ForgetPass";
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
@@ -35,6 +37,7 @@ function App() {
         <Route path="/" element={<Landing/>}/>
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Registeration/>}/>
+        <Route path="/forgetpassword" element={<ForgetPass/>}/>
         <Route path="/home" element={<Feed/>} />
         <Route path="/home/:id" element={<TweetDetail/>} />
         <Route path="/home/addfrd" element={<AddFriend/>} />
@@ -48,6 +51,7 @@ function App() {
         <Route path="/syllabus" element={<Menu/>}/>
         <Route path="/syllabus/:branch" element={<MenuCards/>}/>
         <Route path="/syllabus/:branch/:sem" element={<Detail/>} />
+        <Route path="*" element={<Error/>} />
     </Routes>
     </BrowserRouter>
 

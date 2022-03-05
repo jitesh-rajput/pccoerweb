@@ -19,7 +19,7 @@ class AddFriend extends React.Component {
           return id
       })
       console.log("UserFollowing",users)
-      if(users){
+      if(users[0]){
         firebase.firestore().collection("users")
         .where("uid","not-in",users)
         .get().then((snapshot)=>{

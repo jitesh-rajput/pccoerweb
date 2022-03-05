@@ -5,11 +5,20 @@ const CheckLogin=async(data)=> {
     const { email, password } = data;
     await firebase.auth().signInWithEmailAndPassword(email, password)
         .then((results) => {
-           const token =firebase.auth().currentUser.refreshToken
-           const user=firebase.auth().currentUser.uid
-           sessionStorage.setItem("user",user)
-           sessionStorage.setItem("token",token)
+           console.log(results)
+           const user=firebase.auth().currentUser
+           console.log(user.emailVerified)
+           if(user.emailVerified){
+           sessionStorage.setItem("user",user.uid)
+           sessionStorage.setItem("token",user.refreshToken)
             err="Login"
+           }
+           else{
+               user.sendEmailVerification(()=>{
+                console.log("Verify Your Email ..")
+               })
+               err="Verify Your Email .."
+           }
         })
         .catch((error) => {
             if (error.message === "There is no user record corresponding to this identifier. The user may have been deleted.") {

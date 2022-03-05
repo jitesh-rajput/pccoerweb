@@ -35,9 +35,9 @@ class Feed extends React.Component {
     render() {
       console.log(this.state.post)
       return (
-      <div>
+      <div >
       <Header/>
-      <div className="container-fluid home-bg">
+      <div className="container-fluid home-bg pb-5">
         <div className="container pt-5 ">
           <div className="row pt-5 pb-2">
             <div className="col-sm-12 col-lg-6 m-auto mt-3 py-2 bg-dark rounded shadow-lg">

@@ -3,10 +3,13 @@ import Header from "./Header/Header";
 import { useParams } from "react-router-dom";
 import firebase from "firebase";
 import like from './../Home/img/icons/like.png'
+import download from './../Home/img/icons/download.png'
 import send from './../Home/img/icons/send.png'
 import comment from './../Home/img/icons/comment.png'
 import { Link } from "react-router-dom";
 import ShowComment from "./ShowComment";
+import { saveAs } from "file-saver";
+
 const TweetDetail =(props) => {
     const params = useParams();
       return(
@@ -117,9 +120,9 @@ class Deatail extends React.Component{
                   )
             }
         }
-            const addcomment=(e)=>{
-                e.preventDefault();
+            const addcomment=()=>{
                 if(this.state.comment!=""){
+                    //Add Comments
                 firebase.firestore()
                   .collection("tweets")
                   .doc(`${this.state.postid}`)
@@ -142,7 +145,14 @@ class Deatail extends React.Component{
                 }
             }
             
+            const downloadImg=()=>{
+                if(this.state.post.post){
+                saveAs(this.state.post.post,'img.jpg') 
+                }   
+            };
 
+            // Show Likes 
+         
         return(
             <div className="pt-5">
                 <Header/>
@@ -153,14 +163,14 @@ class Deatail extends React.Component{
                 <div className="col-sm-12 col-lg-6 m-auto">
                     <div className="card bg-dark">
                     <div className="d-flex card-header">
-                        <img src={this.state.post.profile} height={30} />
+                        <img className="rounded-circle" src={this.state.post.profile} height={40} width={40} />
                         <Link to={`/profile/${this.state.post.uid}`} className="link text-white text-decoration-none">
                         <h5 className="px-2 py-1">{this.state.post.username}</h5>
                         </Link>              
                         </div>
                     <div className="card-body">
                         <p className="card-text">{this.state.post.caption}</p>
-                        <a>{this.state.post.url}</a>
+                        <a href={`${this.state.post.url}`} target="_blank">{this.state.post.url}</a>
                         {this.state.post.post ?
                         <img src={this.state.post.post} className="card-img-top"  height={400} width={500}/> :''}
                     </div>
@@ -168,14 +178,14 @@ class Deatail extends React.Component{
                         <div className='row text-center'>
                         <div className='col-4 text-center d-flex'>
                         <img className={this.state.isLiked ? 'btn' :'bg-white rounded'} src={like} height={30} onClick={likeTweet}/>
-                        <p className="px-2">{this.state.count} </p>
+                        <h6 className="px-3">{this.state.count} </h6>
                         </div>
                         <div className='col-4 text-center d-flex'>
                         <img  src={comment} height={30} />
                         <p className="px-2">{this.state.count2} </p>
                         </div>
                         <div className='col-4 text-center d-flex'>
-                        <img  src={comment} height={30}/>
+                        <img  src={download} height={30} onClick={downloadImg}/>
                         </div>
                         </div>
                         <div className="row py-2">

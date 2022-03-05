@@ -9,14 +9,12 @@ const Header2 =()=>{
           <div className="container-fluid">
             <Link to="/" className="navbar-brand logo">
               PCCOER WEB
-            </Link>
-              <ul className="navbar-nav mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link to="/login" className="nav-link active" href="www.google.com">
-                    Login
-                  </Link>
-                </li>
-              </ul>
+            </Link>  
+              <li className="nav-item mb-1">
+                <Link to="/login" className="nav-link active" href="www.google.com">
+                  Login
+                </Link>
+              </li>
           </div>
           </nav>
         </div>

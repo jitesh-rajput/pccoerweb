@@ -9,6 +9,7 @@
 }
 .nav-link {
   border: 2px solid #fa0b77;
+  border-radius: 5px;
 }
 .nav-link:hover {
   background-color: #fa0b77;

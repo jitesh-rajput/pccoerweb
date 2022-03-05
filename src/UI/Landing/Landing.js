@@ -66,7 +66,8 @@ class Landing extends React.Component {
         </div>
         <div className="col-sm-6">
           <h3 className="font-weight-bold py-2">
-          Get Internships ,Jobs and Competition.</h3>
+          Explore Opp
+          </h3>
           <h5 className="py-3">
           Here you can get internships , jobs and competition.
           </h5>
@@ -89,9 +90,10 @@ class Landing extends React.Component {
           <div className="col-sm-6">
             <h2>DEVELOPED BY</h2>
             <h5>Jitesh </h5>
-            <h5>Swastik </h5>
+            <h5> Nikita </h5>
             <h5>Shraddha </h5>
-            <h5>Nikita </h5>
+            <h5>Swastik </h5>
+            <h5>Guided By :- Prof. Mahendra Salunke</h5>
           </div>
           </div>
         </div>

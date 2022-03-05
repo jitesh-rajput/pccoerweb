@@ -1,7 +1,6 @@
 import React from "react";
 import firebase from "firebase";
-import userprofile from "../Home/img/profile.png";
-import Compressor from 'compressorjs';
+import { Link } from "react-router-dom";
 
 class UpdateProfile extends React.Component {
   componentDidMount(){
@@ -31,6 +30,47 @@ class UpdateProfile extends React.Component {
   render() {
     const update=(e)=>{
       e.preventDefault()
+
+      if(this.state.new_pic){
+      
+        // firebase.storage().refFromURL(`${this.state.img}`).delete().then(()=>{console.log("Deleted..")})
+        // .catch((err)=>{
+        //   console.log(err)
+        // })
+        const imgUrl = `profile/${firebase.auth().currentUser.uid}/${Math.random().toString(36)}`;
+        const fileMetaData = { contentType: 'image/jpeg' };
+    
+        const task = firebase.storage().ref(imgUrl)
+        const uploadTask = task.put(this.state.new_pic,fileMetaData);
+        uploadTask.on("state_changed",console.log(),console.error(),()=>{
+            task.getDownloadURL()
+            .then((link)=>{
+                console.log(link)
+                this.setState({"img":link})
+                console.log("Profile uploaded");
+                firebase.firestore()
+                .collection('users')
+                .doc(sessionStorage.getItem("user"))
+                .update(
+                    {
+                        uid:firebase.auth().currentUser.uid,
+                        profile_pic: this.state.img,
+                        username: this.state.username,
+                        name: this.state.name,
+                        bio: this.state.bio,
+                        website:this.state.website,
+                        branch:this.state.branch
+                    }
+                )
+                .then(function () {
+                    console.log("Data Updated");
+                }
+                )
+            })
+        })
+    
+    }
+    else{
       console.log(this.state)
         firebase.firestore()
         .collection('users')
@@ -51,7 +91,7 @@ class UpdateProfile extends React.Component {
             // return "Post Uploaded"
         }
         )
-        //this.setState({username:'',name:'',bio:'',img:'',branch:'',error:'',website:''})
+}
 }
       return (
       <div>
@@ -80,7 +120,7 @@ class UpdateProfile extends React.Component {
       <div className="col-10 col-lg-10 m-auto">
       <form onSubmit={update}>
                 <div className="text-center">
-                <img className="m-auto" src={this.state.img} height={80}/>
+                <img className="m-auto rounded-circle" src={this.state.img} height={100} width={100} />
                 </div>
                 <div className="mb-3">
                     <input className="form-control" type="file" accept=".jpg,.gif,.png" 
@@ -129,6 +169,11 @@ class UpdateProfile extends React.Component {
                   
                   <div className="text-center">
                   <button disabled={this.state.loading} type="submit" className="btn btn-primary my-2 mx-5 px-5 py-2">Update</button>
+                  <div className="row">
+                    <div className=" col-10">
+                    <Link className="m-3 px-5 btn btn-primary" to="/forgetpassword" >Reset Password</Link>
+                    </div>
+                    </div>
                   </div>
                 </form>
       </div>

@@ -3,7 +3,7 @@ import Header from "../constant/Header/Header";
 import TweetCard from "../Home/cards/TweetCard";
 import userprofile from "../Home/img/profile.png";
 import firebase from "firebase";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
  const UserProfile =(props) => {
     const params = useParams();
     return (
@@ -65,7 +65,11 @@ class Pro extends React.Component {
     }
   }
     render() {
-
+      if(sessionStorage.getItem("user")==this.state.user.uid){
+        return(
+          <Navigate to="/profile"/>
+        )
+      }
       const userFollowing=(uid)=>{
         firebase.firestore()
                   .collection("Following")
@@ -86,7 +90,7 @@ class Pro extends React.Component {
           <div className="row pt-5 pb-2">
             <div className="col-sm-12 col-lg-4 mt-3 py-2 m-auto bg-dark text-white">
               <div className="text-center">
-                <img src={this.state.user.profile_pic} height={180}/>
+                <img className="rounded-circle" src={this.state.user.profile_pic} height={150} width={150}/>
               </div>
               
               <div className="px-5 py-3">
@@ -98,7 +102,7 @@ class Pro extends React.Component {
                 </Link>           
                 <h6 className="px-5"> Bio :- <span>{this.state.user.bio}</span></h6>
                 <h6 className="px-5"> email :- <span>{this.state.user.email}</span></h6>
-                <h6 className="px-5"> website :- <span>{this.state.user.website}</span></h6>
+                <h6 className="px-5"> website :- <span><a href={`${this.state.user.website}`} target="_blank" className="link">{this.state.user.website}</a></span></h6>
                 <div className="row">
                 <div className="col-lg-5 text-center" >
                 <button className="btn py-2" onClick={()=>userFollowing(this.state.user.uid)} >{this.state.isFollowing ?'Following':"Connect"}</button>
