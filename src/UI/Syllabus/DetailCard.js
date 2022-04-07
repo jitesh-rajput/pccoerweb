@@ -1,9 +1,13 @@
 import { useState } from "react";
-
+import Error from "../constant/Error";
         
 const DetailCard=(data)=>{
     const subject=data.data
     const [toggle,setToggle]=useState(false)
+    if(!sessionStorage.getItem("user")){
+        return <Error/>
+      }
+     else{
     return(
         <>
         <div className="accordion py-3" id="accordionExample">
@@ -33,5 +37,6 @@ const DetailCard=(data)=>{
             </div>
         </>
     )
+                }
 }
 export default DetailCard;

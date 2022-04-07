@@ -1,5 +1,4 @@
-import userprofile from './../img/icons/user.png';
-import profile from './../img/profile.png';
+import { Link } from "react-router-dom";
 
 const StudentCard =(data)=>{
     data=data.data
@@ -9,7 +8,9 @@ const StudentCard =(data)=>{
             <div className="card-header">
             <div className="d-flex">
                 <img className='rounded-circle' src={data.profile_pic} height={35} width={35}/> 
-                <h6 className="px-2 py-1">{data.username}</h6>
+                <Link to={`/profile/${data.uid}`} className="link text-white text-decoration-none">
+                <h5 className="px-2 py-1">{data.username}</h5>
+                </Link>
             </div>
             </div>
             <div className="card-body text-center">

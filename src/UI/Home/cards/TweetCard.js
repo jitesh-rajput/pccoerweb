@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 const TweetCard =(data)=>{
     data=data.data
     var PosdDate=new Date(data.creation.seconds*1000)
-    PosdDate=PosdDate.getDate()+"/"+PosdDate.getMonth()+"/"+PosdDate.getFullYear()
+    var month=PosdDate.getMonth()+1
+    PosdDate=PosdDate.getDate()+"/"+month+"/"+PosdDate.getFullYear()
     return(
         <div className="py-3">
         <div className="row">

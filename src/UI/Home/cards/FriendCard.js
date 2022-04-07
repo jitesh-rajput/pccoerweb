@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 const FriendCard =(data)=>{
-    console.log(data)
     data=data.data
     return(
         <div className="row py-3"> 

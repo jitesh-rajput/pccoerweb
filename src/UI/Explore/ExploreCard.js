@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import companyprofile from "../Home/img/icons/office.png";
-import Deatail from "./Detail";
+import React from "react";
+import Error from "../constant/Error";
 const ExploreCard =(props)=>{
     const [data,setData] =useState(props.data)
     console.log(data)
+    if(!sessionStorage.getItem("user")){
+        return <Error/>
+      }
+     else{
     return(
         <div className="row py-3"> 
         <div className="col-sm-12 col-lg-6 m-auto">
@@ -27,5 +31,5 @@ const ExploreCard =(props)=>{
         </div>
     )
 }
-
+}
 export default ExploreCard;

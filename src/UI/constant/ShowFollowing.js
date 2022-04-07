@@ -53,9 +53,14 @@ class Following extends React.Component{
                 <div className="container-fluid home-bg cardcss pt-5">
                 <h3 className="text-center pt-5">Following</h3>
                 <div className="container-fluid pt-5">
-                {this.state.userFollowing.map(data=>(
+
+                {
+                  this.state.userFollowing[0]?
+                  this.state.userFollowing.map(data=>(
                 <FriendCard data={data} key={data.id}/>
-              ))}
+              ))
+              :<h4 className="text-center">No Following</h4>
+              }
                 </div>
                 </div>
                 </>

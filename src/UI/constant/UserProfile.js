@@ -70,7 +70,8 @@ class Pro extends React.Component {
           <Navigate to="/profile"/>
         )
       }
-      const userFollowing=(uid)=>{
+      else{
+      /* const userFollowing=(uid)=>{
         firebase.firestore()
                   .collection("Following")
                   .doc(firebase.auth().currentUser.uid)
@@ -82,6 +83,40 @@ class Pro extends React.Component {
                   }
                   )
       }
+      */
+
+      const userFollowing=(uid)=>{
+        console.log(uid)
+        if(this.state.isFollowing){
+            // UnFollow the User 
+            firebase.firestore()
+            .collection("Following")
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userFollowing")
+            .doc(uid)
+            .delete()
+            .then(()=>{
+            this.setState({isFollowing:false})
+            }
+            )
+            .catch((error)=>{
+                console.log("Error :",error)
+            })
+        }
+        else{
+          firebase.firestore()
+          .collection("Following")
+          .doc(firebase.auth().currentUser.uid)
+          .collection("userFollowing")
+          .doc(uid)
+          .set({
+          }).then(()=>{
+          this.setState({isFollowing:true})
+          }
+          )
+        }
+      }
+
       return (
       <div>
       <Header/>
@@ -101,7 +136,6 @@ class Pro extends React.Component {
                 <h6 className="px-5" > Friend :-{this.state.following} <span></span></h6> 
                 </Link>           
                 <h6 className="px-5"> Bio :- <span>{this.state.user.bio}</span></h6>
-                <h6 className="px-5"> email :- <span>{this.state.user.email}</span></h6>
                 <h6 className="px-5"> website :- <span><a href={`${this.state.user.website}`} target="_blank" className="link">{this.state.user.website}</a></span></h6>
                 <div className="row">
                 <div className="col-lg-5 text-center" >
@@ -121,5 +155,5 @@ class Pro extends React.Component {
       )
     }
   }
-
+}
 export default UserProfile

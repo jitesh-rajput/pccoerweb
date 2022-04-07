@@ -4,18 +4,23 @@ import { useParams } from "react-router-dom";
 import {Link} from 'react-router-dom'
 import firebase from "firebase" ;
 import DetailCard from './DetailCard';
-
+import Error from '../constant/Error';
 const Detail =(props) => {
   const params = useParams();
   console.log(params)
     if((params.branch==="CS" || params.branch==="EE" || params.branch==="CE" || params.branch==="E&TC") && (params.sem==="1" || params.sem==="2" || params.sem==="3" || params.sem==="4"||params.sem==="5" || params.sem==="6" || params.sem==="7" || params.sem==="8") ){
+        if(!sessionStorage.getItem("user")){
+            return <Error/>
+          }
+         else{
         return(
         <ShowDetail {...props} params={params} />
         )
+        }
     }
     else {
         return(
-            <h1 className='text-center'>404</h1>
+            <Error/>
         )
     }
 }
@@ -46,6 +51,10 @@ class ShowDetail extends React.Component{
     }
     render()
     {
+        if(!sessionStorage.getItem("user")){
+            return <Error/>
+          }
+         else{
         console.log(this.state.subjects)
         return(
             <>
@@ -61,5 +70,6 @@ class ShowDetail extends React.Component{
             </>
         )
         }
+    }
 }
 export default Detail;

@@ -1,16 +1,19 @@
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../constant/Header/Header";
-import ExploreCard from "./ExploreCard";
 import firebase from "firebase";
-import userprofile from "../Home/img/profile.png";
-import { Link, useParams } from "react-router-dom";
+import Error from "../constant/Error";
+import { useParams } from "react-router-dom";
 
 const Detail =(props) => {
   const params = useParams();
+  if(!sessionStorage.getItem("user")){
+    return <Error/>
+  }
+ else{
   return (
     <ShowDetail {...props} params={params} />
   );
+ }
 }
 
 class ShowDetail extends React.Component{

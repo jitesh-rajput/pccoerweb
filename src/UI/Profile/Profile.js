@@ -1,14 +1,15 @@
 import React from "react";
 import Header from "../constant/Header/Header";
 import TweetCard from "../Home/cards/TweetCard";
-import userprofile from "../Home/img/profile.png";
 import firebase from "firebase";
 import UpdateProfile from "./UpdateProfile";
 import { Link, Navigate } from "react-router-dom";
+import Error from "../constant/Error";
 
 class Profile extends React.Component {
   componentDidMount(){
     // Get Current User
+    if(sessionStorage.getItem("user")){
     firebase.firestore().collection("users")
     .doc(sessionStorage.getItem("user"))
     .onSnapshot((snapshot)=>{
@@ -39,7 +40,7 @@ class Profile extends React.Component {
      this.setState({posts:userpost})
     })
   }
-  
+}
   constructor(){
     super()
     this.state={
@@ -62,6 +63,10 @@ class Profile extends React.Component {
         return(<Navigate to="/login" replace={true} />)
       }
       else{
+        if(!sessionStorage.getItem("user")){
+          return <Error/>
+        }
+       else{
       return (
       <div>
       <Header/>
@@ -103,8 +108,9 @@ class Profile extends React.Component {
       </div>
     </div>
       )
-          }
+    }
     }
   }
+}
   export default Profile
 

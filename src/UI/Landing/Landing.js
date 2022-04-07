@@ -13,11 +13,11 @@ class Landing extends React.Component {
       <div className="bg">
       <div>
       <h2 className="heading">
-          Welcome
+          A New Way To Meet 
           <br/>
-          To  
+           People At  <span>PCCOER </span>
           <br/>
-          <span>PCCOER WEB</span>
+          
       </h2>
       </div>
       </div>
@@ -31,10 +31,10 @@ class Landing extends React.Component {
             <img src={profile} className="img-fluid" style={{height: 200}}/>
           </div>
           <div className="col-sm-6">
-            <h3 className="font-weight-bold py-2">Get In Touch With PCCOER Alumni ... </h3>
+            <h3 className="font-weight-bold py-2">Get In Touch With PCCOER Alumni</h3>
             <h5 className="py-3">
-                Improve Your Profile With Alumni...... <br/>
-                Builde Your Professional Connection........  
+              Improve Your Professional Profile by Developing Professional Relationships with Alumni 
+              <br/>And share your accomplishments/ideas here .
             </h5>
           </div>
           </div>
@@ -46,11 +46,10 @@ class Landing extends React.Component {
           <div className="row py-5">
           <div className="col-sm-6">
           <h3 className="font-weight-bold py-2">
-          Get Roadmap of your B.E Journey .... </h3>
+          Get Roadmap of your B.E Journey </h3>
           <h5 className="py-3">
-          Here you will get syllabus copy of your all
-          semester . Notes for all semester from
-          specialized teachers and Reference Book
+          You will find a copy of your whole semester's syllabus here. 
+          Teachers' notes for the entire semester Other relevant materials are included in the reference book.
             </h5>
           </div>
           <div className="col-sm-6 text-center">
@@ -65,11 +64,11 @@ class Landing extends React.Component {
           <img src={graduate} className="img-fluid" style={{height: 200}}/>
         </div>
         <div className="col-sm-6">
-          <h3 className="font-weight-bold py-2">
-          Explore Opp
+          <h3 className="font-weight-bold py-2 text-center">
+            Explore Opportunity
           </h3>
-          <h5 className="py-3">
-          Here you can get internships , jobs and competition.
+          <h5 className="py-3 px-3">
+          You can get real-time internship and competition alerts here, which can help students stand out in a crowded field..
           </h5>
         </div>
         </div>
@@ -89,10 +88,10 @@ class Landing extends React.Component {
           </div>
           <div className="col-sm-6">
             <h2>DEVELOPED BY</h2>
-            <h5>Jitesh </h5>
-            <h5> Nikita </h5>
-            <h5>Shraddha </h5>
-            <h5>Swastik </h5>
+            <a className="text-info text-decoration-none" href="https://www.linkedin.com/in/jitesh-rajput-916076215/" target="_blank">Jitesh Rajput</a> <br/>
+            <a className="text-decoration-none" target="_blank" href="https://www.linkedin.com/in/nikita-badhekar-b551841aa/">Nikita Badhekar</a> <br/>
+            <a className="text-decoration-none" target="_blank" href="https://www.linkedin.com/in/someshbhandare/">Swastik Ghonsikar</a> <br/>
+            <a className="text-decoration-none" target="_blank" href="https://www.linkedin.com/in/shraddha-warade-b8a921230/">Shraddha warade</a> <br/>
             <h5>Guided By :- Prof. Mahendra Salunke</h5>
           </div>
           </div>

@@ -13,12 +13,11 @@ class AddFriend extends React.Component {
       .collection("userFollowing")
       .get()
       .then((snapshot)=>{
-        console.log("jksdf")
         let users=snapshot.docs.map(doc=>{
           const id=doc.id; 
           return id
       })
-      console.log("UserFollowing",users)
+      //console.log("UserFollowing",users)
       if(users[0]){
         firebase.firestore().collection("users")
         .where("uid","not-in",users)
@@ -74,7 +73,6 @@ class AddFriend extends React.Component {
       }
     }
     render() {
-      console.log(this.state.userFollowing)
       return (
         <div>
           <Header/>

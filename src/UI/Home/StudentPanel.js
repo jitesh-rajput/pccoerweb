@@ -4,6 +4,7 @@ import BottomFooter from "./BottomFooter";
 import firebase from "firebase";
 import './Feed.css';
 import StudentCard from "./cards/StudentCard";
+import Error from "../constant/Error";
 
 class StudentPanel extends React.Component {
   componentDidMount(){
@@ -46,6 +47,10 @@ class StudentPanel extends React.Component {
     }
   }
     render() {
+      if(!sessionStorage.getItem("user")){
+        return <Error/>
+      }
+      else{
       return (
       <div>
       <Header/>
@@ -82,5 +87,5 @@ class StudentPanel extends React.Component {
       )
     }
   }
-
+}
   export default StudentPanel;

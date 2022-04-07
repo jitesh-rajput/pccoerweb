@@ -3,6 +3,7 @@ import Header from "../constant/Header/Header";
 import firebase from "firebase";
 import { useParams } from "react-router-dom";
 import { Link} from 'react-router-dom';
+import Error from "../constant/Error";
 
 function Card({branch,sem}){
   return(
@@ -22,13 +23,18 @@ const MenuCards =(props) => {
   const params = useParams();
   console.log(params)
   if(params.branch==="CS" || params.branch==="EE" || params.branch==="CE" || params.branch==="E&TC" ){
+    if(!sessionStorage.getItem("user")){
+      return <Error/>
+    }
+   else{
   return (
     <MCards {...props} params={params} />
-  );
+  )
+   }
   }
   else{
     return(
-      <h2>404</h2>
+      <Error/>
     )
   }
 }

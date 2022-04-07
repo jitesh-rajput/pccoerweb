@@ -1,17 +1,13 @@
 import React from "react";
 import Header from "../constant/Header/Header";
 import BottomFooter from "./BottomFooter";
-import { Link } from 'react-router-dom';
 import './Feed.css'
 import TweetCard from "./cards/TweetCard";
 import firebase from "firebase";
-import { setUser} from "../../redux/actions";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-
+import Error from "../constant/Error";
 class Feed extends React.Component {
     componentDidMount(){
-      this.props.setUser()
+
     // Fetch user Posts 
      firebase.firestore()
             .collection("tweets")
@@ -22,7 +18,6 @@ class Feed extends React.Component {
                     const id = doc.id;
                     return { id, ...data }
                 })
-                console.log(allpost)
                 this.setState({ post: allpost })
             })
     } 
@@ -33,7 +28,10 @@ class Feed extends React.Component {
       }
     }
     render() {
-      console.log(this.state.post)
+      if(!sessionStorage.getItem("user")){
+        return <Error/>
+      }
+     else{
       return (
       <div >
       <Header/>
@@ -54,8 +52,6 @@ class Feed extends React.Component {
       )
     }
   }
+}
 
-
- const mapDispatchProps = (dispatch) => bindActionCreators({ setUser }, dispatch);
- export default connect(mapDispatchProps, mapDispatchProps)(Feed);
-//export default Feed;
+export default Feed;

@@ -2,9 +2,13 @@
 import React from "react";
 import Header from "../constant/Header/Header";
 import { Link } from "react-router-dom";
-
+import Error from "../constant/Error";
 class Menu extends React.Component {
     render() {
+      if(!sessionStorage.getItem("user")){
+        return <Error/>
+      }
+     else{
       return (
       <div>
       <Header/>
@@ -63,5 +67,6 @@ class Menu extends React.Component {
       )
     }
   }
+}
 
   export default Menu;

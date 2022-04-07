@@ -3,7 +3,7 @@ import React from "react";
 import Header from "../constant/Header/Header";
 import ExploreCard from "./ExploreCard";
 import firebase from "firebase";
-
+import Error from "../constant/Error";
 class Explore extends React.Component {
     componentDidMount(){
       console.log(this.state.menu)
@@ -24,7 +24,7 @@ class Explore extends React.Component {
         internships:[],
         menu:'internships'
       }
-     const arr=['compitions','internships','freelancing']
+     const arr=['compitions','internships']
 
       this.getInternships=()=>{
         firebase.firestore().collection("internships").get().then((snapshot)=>{
@@ -37,9 +37,6 @@ class Explore extends React.Component {
         }
         )
         this.setState({menu:arr[1]})
-      }
-      this.getFreelancing=()=>{
-        this.setState({menu:arr[2]})
       }
       this.getCompition=()=>{
         firebase.firestore().collection("compitions").get().then((snapshot)=>{
@@ -57,6 +54,10 @@ class Explore extends React.Component {
 
     render() {
       console.log(this.state.internships)
+      if(!sessionStorage.getItem("user")){
+        return <Error/>
+      }
+     else{
       return (
       <div>
       <Header/>
@@ -89,5 +90,5 @@ class Explore extends React.Component {
       )
     }
   }
-
+}
   export default Explore;
